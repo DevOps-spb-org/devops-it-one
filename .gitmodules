@@ -1,4 +1,0 @@
-[submodule "vendor/ingress-nginx"]
-	path = vendor/ingress-nginx
-	url = https://github.com/nginxinc/kubernetes-ingress.git
-	branch = release-2.4
