@@ -17,7 +17,6 @@ local Prod(numb) = {
   };
 
 {
-#  prod1: Prod('prod1'),
-#  prod2: Prod('prod2')
-  Prod(i) for i in std.range(5)
+  ['prod' + i]: Prod(i)
+  for i in std.range(5)
 }
