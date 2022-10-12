@@ -1,0 +1,28 @@
+apiVersion: qbec.io/v1alpha1
+kind: App
+metadata:
+  name: ingress
+spec:
+  environments:
+    stage:
+      defaultNamespace: default
+      context: stage
+    prod:
+      defaultNamespace: default
+      context: prod
+  vars:
+    computed:
+      - name: helmTemplate
+        code: |
+          {
+            local p = import './params.libsonnet',
+            local values = p.components['ingress'].values,
+            command: 'helm',
+            args: [ 'template', '../vendor/ingress-nginx/deployments/helm-chart', '-f-' ],
+            stdin: std.manifestJson(values)
+          }
+  dataSources:
+    # data sources are declared to be of the form
+    #   <kind>://<name>?configVar=<configuration-variable-name>
+    # in this case kind=exec, name=helm, and config var is helmTemplate defined above
+    - exec://helm?configVar=helmTemplate

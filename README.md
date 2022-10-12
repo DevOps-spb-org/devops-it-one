@@ -1,2 +1,5 @@
 # devops-it-one
-/helm-chart - стандартный helm чарт для NGINX Ingress Controller
+
+vendor/ingress-nginx - master branch kubernetes-ingress as a module
+
+vendor\ingress-nginx\deployments\helm-chart\ - path to helm-chart
